@@ -1,4 +1,5 @@
 # executable
+('username','shahid')
+('Shahid', 'anabiya')
 
-Make sure the statics are in the cwd and not in a folder. 
 

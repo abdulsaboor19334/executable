@@ -24,14 +24,14 @@ root.get_themes()
 root.set_theme('itft1')
 root.title('Al mansoor garments')
 root.geometry('1000x600')
-root.iconbitmap('icon.ico')
+root.iconbitmap('statics/icon.ico')
 root.config(background='#D6F1F6')
-img = ImageTk.PhotoImage(Image.open("logo.png")) 
+img = ImageTk.PhotoImage(Image.open("statics/logo.png")) 
 
 
 
 
-bottom_label = ttk.Label(root, text='made by: FluffCoders Email: fluffcoding@gmail.com contact# 03359648486, 03129675450',font='times 10 bold', relief=SUNKEN,anchor=W)
+bottom_label = ttk.Label(root, text='made by: Abdul Saboor Email: abdulsaboorawan200@gmail.com contact# 03359648486',font='times 10 bold', relief=SUNKEN,anchor=W)
 bottom_label.pack(side=BOTTOM, fill=X)
 
 
@@ -117,7 +117,7 @@ def sell_scan():
 def sub():
     sale = int(costprice_entry.get()) * float(profit_entry.get())
 
-    conn = sqlite3.connect('garment.db')
+    conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
     c.execute("INSERT into garment(barcode, name, sale_price, cost_price, gender, size, status) VALUES(:bar, :name, :sale, :cost, :gender, :size, :status)", {
         'bar' : bar_entry.get(),
@@ -210,7 +210,7 @@ def sell(event):
     global index_item
     global del_entry
     text.config(state='normal')
-    conn = sqlite3.connect('garment.db')
+    conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
     disc = discountvar.get() / 100 
     discount = 1 - disc
@@ -266,7 +266,7 @@ def sell_stock():
         os.startfile('bill.docx','print')
         w.save('bill.docx')
 
-        conn = sqlite3.connect('garment.db')
+        conn = sqlite3.connect('statics/garment.db')
         c = conn.cursor()
 
         c.execute("INSERT INTO trans VALUES(:detail, :id)",{'detail': data, 'id':y})
@@ -345,7 +345,7 @@ def sell_stock():
     text.config(state="disabled")
 
 def back():
-    conn = sqlite3.connect('garment.db')
+    conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
     code = return_barcode_entry.get()
     c.execute("UPDATE garment SET status ='inventory',day = 0, year=0,month=0 WHERE barcode= :code",{'code' : code })
@@ -365,7 +365,7 @@ def back():
 
 def detail():
     code = detail_barcode_entry.get()
-    conn = sqlite3.connect('garment.db')
+    conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
     data = c.execute("SELECT detail FROM trans WHERE trans_id = :code",{'code':code})
     for x in data:
@@ -461,7 +461,7 @@ def detail():
     scroll.config(command=detail_text.yview)
     def show_detail():
         global index_item
-        conn = sqlite3.connect('garment.db')
+        conn = sqlite3.connect('statics/garment.db')
         c = conn.cursor()
         if var.get()=='inventory':
             query = c.execute('SELECT * FROM garment WHERE status = :status',{'status': 'inventory'})
@@ -583,7 +583,7 @@ def daily_detail():
 
     def show_detail():
         global index_item
-        conn = sqlite3.connect('garment.db')
+        conn = sqlite3.connect('statics/garment.db')
         c = conn.cursor()
         if detail_var.get()=='inventory':
             query = c.execute("SELECT * FROM garment WHERE status = 'inventory' ")
@@ -652,7 +652,7 @@ def make():
     data_password =  add_password_entry.get()
     data_password2 = add_password2_entry.get()
 
-    conn = sqlite3.connect('garment.db')
+    conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
     data = c.execute("SELECT username FROM auth")
 
@@ -673,13 +673,13 @@ def edit():
     old_username = edit_username_entry.get()
     new_password = edit_password_entry.get()
 
-    conn = sqlite3.connect('garment.db')
+    conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
     c.execute("UPDATE auth SET password=:password WHERE username = :username", {'password' : new_password, 'username':old_username})
     conn.commit()
 
 def delete():
-    conn = sqlite3.connect('garment.db')
+    conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
     c.execute('DELETE FROM auth WHERE username = :username',{'username':remove_user})
     conn.commit()
@@ -767,7 +767,7 @@ password =  ttk.Entry(signin_frame,width=50, show='*')
 password.grid(row=2,column=1,pady=10)    
 
 def sign():
-    conn = sqlite3.connect('garment.db')
+    conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
     data = c.execute('SELECT * FROM auth')
 
