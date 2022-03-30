@@ -11,7 +11,6 @@ import re
 import docx
 import PIL
 import qrcode
-import time
 from tkinter import ttk
 from ttkthemes import themed_tk as tk
 from PIL import ImageTk,Image
@@ -47,7 +46,6 @@ def add_stock_scan():
     cap = cv2.VideoCapture(0)
     data = None
     while data is None:
-
         ret, img = cap.read()
         code = decode(img)
         for bar in code:
@@ -58,7 +56,6 @@ def add_stock_scan():
             break
         if data is not None:
             cv2.destroyAllWindows()
-
     cap.release()
 
 def sell_stock_scan():
@@ -76,7 +73,6 @@ def sell_stock_scan():
             break
         if data is not None:
             cv2.destroyAllWindows()
-
     cap.release()
 
 def return_stock_scan():
@@ -137,7 +133,7 @@ def sub():
 def add_stock():
     global bar_entry
     global name_entry
-    global saleprice_entry
+    # global saleprice_entry
     global costprice_entry
     global gender_entry
     global size_entry
@@ -681,8 +677,9 @@ def edit():
 def delete():
     conn = sqlite3.connect('statics/garment.db')
     c = conn.cursor()
-    c.execute('DELETE FROM auth WHERE username = :username',{'username':remove_user})
+    c.execute('DELETE FROM auth WHERE username = :username',{'username':0})
     conn.commit()
+
 def user_management():
     global add_username_entry
     global add_password_entry
