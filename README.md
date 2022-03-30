@@ -18,6 +18,7 @@ the app also has an integrated database in the form on an Sqlite3 database.
    > The financial reports that are automatically genrated  
    >
 6) The app prints a unique QR code on each bill following is an empty sample:
+7) 
 ![Bill Sample](./statics/Picture1.png)
    
 7) the QR code can be scanned to obtain all the data of that transacrion saved in the database changes like return can be made and a new bill can be printed
@@ -27,10 +28,38 @@ the app also has an integrated database in the form on an Sqlite3 database.
 - The window rendering will be class based 
 - the code would be broken down into smalle modules and files 
 - the code would be made dynamic to make it easily editable.
+----------
 
 ## How to run the code
-
-
+>### prereqs
 >
-> git clone https://github.com/abdulsaboor19334/retail-app.git
+>1) installed python
+>2) installed Git and system paths set
 >
+>.
+
+>### recomendationos
+>
+>1) use a virtualenv
+>2) do not use this in a business setting the app is still new
+>
+>.
+----------
+```bash
+# this will clone the repo in a folder named retail-app
+
+git clone https://github.com/abdulsaboor19334/retail-app.git
+
+# this will move you to the retail app
+
+cd retail-app
+
+# this will install all the dependencies it is suggested that the command be run in a virtual env
+
+python3 install -r requirements.txt
+
+# starts the program
+
+python front.py 
+
+```
